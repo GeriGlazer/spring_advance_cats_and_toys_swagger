@@ -4,6 +4,7 @@ import com.jb.spring_advance_cats_and_toys_swagger.beans.Cat;
 import com.jb.spring_advance_cats_and_toys_swagger.beans.Toy;
 import com.jb.spring_advance_cats_and_toys_swagger.repo.CatRepo;
 import com.jb.spring_advance_cats_and_toys_swagger.repo.ToyRepo;
+import com.jb.spring_advance_cats_and_toys_swagger.service.CatService;
 import com.jb.spring_advance_cats_and_toys_swagger.util.TablePrinter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -18,6 +19,7 @@ import java.util.List;
 public class Test1 implements CommandLineRunner {
     private final CatRepo catRepo;
     private final ToyRepo toyRepo;
+    private final CatService catService;
 
 
     @Override
@@ -145,7 +147,8 @@ public class Test1 implements CommandLineRunner {
         } else {
             //custom Exception (advice)
             System.out.println("No cats in database");
-        }
-*/
+        }*/
+        TablePrinter.print(catService.getAllCatsByNameAndWeight());
+
     }
 }

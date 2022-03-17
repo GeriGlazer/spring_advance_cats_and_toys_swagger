@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 public class Cat implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private  int id;
     @Column(nullable = false, length = 40)
     private  String name;

@@ -55,15 +55,16 @@ public class CatService implements CatServicelmpl {
     @Override
     public List<Cat> getAllCatsByNameAndWeight() throws CatExceptions {
         //todo: throw new CatExceptions("Invalid weight");
-        List<Cat> catList = catRepo.findAll();
-
+        //List<Cat> catList = catRepo.findAll();
         Comparator<Cat> compareNamesAndWeight = Comparator
                 .comparing(Cat::getName)
                 .thenComparing(Cat::getWeight);
 
-        return catList.stream()
-                .sorted(compareNamesAndWeight)
-                .collect(Collectors.toList());
+        return catRepo.findAll().stream().sorted(compareNamesAndWeight).collect(Collectors.toList());
+
+//        return catList.stream()
+//                .sorted(compareNamesAndWeight)
+//                .collect(Collectors.toList());
     }
 
 }

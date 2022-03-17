@@ -15,26 +15,31 @@ public class CatController {
     private final CatService catService;
 
     @GetMapping("/all")
-    @ResponseStatus(code = HttpStatus.OK)
-    public void getAllCats() {
-       catService.getAllCats();
+    public ResponseEntity<?> getAllCats() {
+       return new ResponseEntity<>(catService.getAllCats(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public void getCatById(@PathVariable int id) throws CatExceptions {
+
+    public ResponseEntity<?> getCatById(@PathVariable int id) throws CatExceptions {
         try {
-            catService.getCatById(id);
+            return new ResponseEntity<>(catService.getCatById(id), HttpStatus.ACCEPTED);
         } catch (CatExceptions e) {
             System.out.println(e.getMessage());
             throw new CatExceptions(e.getMessage());
         }
     }
 
+//    @PostMapping("/add")
+//    @ResponseStatus(code = HttpStatus.CREATED)
+//    public void saveNewCat(@RequestBody Cat cat){
+//        catService.saveCat(cat);
+//    }
+
     @PostMapping("/add")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public void saveNewCat(@RequestBody Cat cat){
+    public ResponseEntity<?> newCat (@RequestBody Cat cat){
         catService.saveCat(cat);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
@@ -50,9 +55,8 @@ public class CatController {
     }
 
     @GetMapping("/allbynameandweight")
-    @ResponseStatus(code = HttpStatus.OK)
-    public void getAllCatsByNameAndWeight() throws CatExceptions {
-        catService.getAllCatsByNameAndWeight();
+    public ResponseEntity<?> getAllCatsByNameAndWeight() throws CatExceptions {
+        return new ResponseEntity<>(catService.getAllCatsByNameAndWeight(), HttpStatus.OK);
     }
 
 

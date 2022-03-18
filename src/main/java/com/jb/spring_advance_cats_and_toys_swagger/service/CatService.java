@@ -6,8 +6,10 @@ import com.jb.spring_advance_cats_and_toys_swagger.repo.CatRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,18 +55,17 @@ public class CatService implements CatServicelmpl {
     }
 
     @Override
-    public List<Cat> getAllCatsByNameAndWeight() throws CatExceptions {
-        //todo: throw new CatExceptions("Invalid weight");
-        //List<Cat> catList = catRepo.findAll();
-        Comparator<Cat> compareNamesAndWeight = Comparator
-                .comparing(Cat::getName)
-                .thenComparing(Cat::getWeight);
-
-        return catRepo.findAll().stream().sorted(compareNamesAndWeight).collect(Collectors.toList());
-
-//        return catList.stream()
-//                .sorted(compareNamesAndWeight)
-//                .collect(Collectors.toList());
+    public List<Cat> getAllOrderByNameAndWeight() throws CatExceptions {
+        try {
+            if (isWeightValid.test((Cat) catRepo.findAll())) {
+                return catRepo.findAllOrderByNameAndWeight();
+            }else {
+                throw new CatExceptions("Invalid weight");
+            }
+        }catch (CatExceptions catExceptions){
+            System.out.println(catExceptions.getMessage());
+            return null;
+        }
     }
 
 }

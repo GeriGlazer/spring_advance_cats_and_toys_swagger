@@ -13,14 +13,14 @@ public interface CatRepo extends JpaRepository<Cat, Integer> {
 
     Predicate<Cat> isWeightValid = weight -> weight.getWeight() < 0;
 
-    List<Cat> findByNameAndWeight(String name, Float weight);
+    //List<Cat> findByNameAndWeight(String name, Float weight);
 
-    //List<Cat> readByNameAndWeight(String name, Float weight);
-    List<Cat> findByNameOrWeight(String name, Float weight);
-    //List<Cat> getByNameOrWeight(String name, Float weight);
+    List<Cat> findAllOrderByNameAndWeight();
+    //List<Cat> findByNameOrWeight(String name, Float weight);
+    List<Cat> findAllOrderByNameOrWeight();
 
-    //List<Cat> getAllByWeightAsc();
-    //List<Cat> getByNameOrderByWeightDesc();
+    List<Cat> findAllOrderByWeightAsc();
+    List<Cat> findAllOrderByWeightDesc();
 
     List<Cat> findByNameStartingWith(char letter);
 

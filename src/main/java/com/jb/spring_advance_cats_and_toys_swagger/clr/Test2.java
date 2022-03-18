@@ -19,10 +19,10 @@ public class Test2 implements CommandLineRunner {
     public void run(String... args) throws Exception {
        // catRepo.findByNameAndWeight("daemon", 8.5F);
         //catRepo.findByNameAndWeight("daemon", 8.5F).forEach(System.out::println);
-        TablePrinter.print(catRepo.findByNameAndWeight("daemon", 8.5f));
-        TablePrinter.print(catRepo.findByNameOrWeight("sprinkles", 12f));
-        //TablePrinter.print(catRepo.getAllByWeightAsc());
-        //TablePrinter.print(catRepo.getByNameOrderByWeightDesc());
+        TablePrinter.print(catRepo.findAllOrderByNameAndWeight());
+        TablePrinter.print(catRepo.findAllOrderByNameOrWeight());
+        TablePrinter.print(catRepo.findAllOrderByWeightAsc());
+        TablePrinter.print(catRepo.findAllOrderByWeightDesc());
         TablePrinter.print(catRepo.findByNameStartingWith('s'));
     }
 }

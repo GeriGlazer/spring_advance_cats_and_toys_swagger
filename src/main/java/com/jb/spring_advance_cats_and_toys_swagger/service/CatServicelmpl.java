@@ -4,6 +4,7 @@ import com.jb.spring_advance_cats_and_toys_swagger.beans.Cat;
 import com.jb.spring_advance_cats_and_toys_swagger.exceptions.CatExceptions;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public interface CatServicelmpl {
     public void saveCat(Cat cat);
@@ -12,9 +13,11 @@ public interface CatServicelmpl {
 
     public void deleteCat(int id) throws CatExceptions;
 
-    public Cat getCatById(int id) throws CatExceptions;
-
     public List<Cat> getAllCats();
 
-    public List<Cat> getAllCatsByNameAndWeight() throws CatExceptions;
+    public Cat getCatById(int id) throws CatExceptions;
+
+    public List<Cat> getAllOrderByNameAndWeight() throws CatExceptions;
+
+    public Predicate<Cat> isWeightValid = weight -> weight.getWeight() < 0;
 }
